@@ -1,11 +1,14 @@
 import discord
 from discord.ext import commands
 from discord.ext.commands import Bot
+import os
 import asyncio
 
-
+token = os.environ['token']
 client = commands.Bot(command_prefix = '!')
 # bot = discord.Bot()
+
+
 
 #function activate when started
 @client.event
@@ -119,4 +122,4 @@ async def kick(ctx, guilty):
 
 
 
-client.run('NDkxMDY0ODY1MTcxOTYzOTI0.DoDcaw.ou1g5ozgayWW1hq5opZNAwpjfG4')
+client.run(token)
