@@ -73,7 +73,7 @@ async def echo(*args):
 
 #clear messages, 10 at a time
 @client.command(pass_context=True)
-async def clear(ctx, amount=10):
+async def sweep(ctx, amount=10):
     channel = ctx.message.channel
     messages = []
     async for message in client.logs_from(channel,limit=int(amount)):
