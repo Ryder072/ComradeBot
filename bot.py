@@ -3,7 +3,6 @@ from discord.ext import commands
 from discord.ext.commands import Bot
 import asyncio
 
-token = process.env.token
 
 client = commands.Bot(command_prefix = '!')
 # bot = discord.Bot()
@@ -120,4 +119,4 @@ async def kick(ctx, guilty):
 
 
 
-client.run(token)
+client.run('NDkxMDY0ODY1MTcxOTYzOTI0.DoDcaw.ou1g5ozgayWW1hq5opZNAwpjfG4')
