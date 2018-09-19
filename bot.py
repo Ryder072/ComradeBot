@@ -121,7 +121,7 @@ async def kick(ctx, guilty):
         await client.kick(member)
         await client.say("Member Kicked")
     else:
-        await("Back off Comrade! :triumph: You're not daddy Cartmanez :heart_eyes:")
+        await client.say("Back off Comrade! :triumph: You're not daddy Cartmanez :heart_eyes:")
 
 
 
