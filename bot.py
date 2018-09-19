@@ -117,11 +117,12 @@ async def kick(ctx, guilty):
     if member == None:
         await client.say("Traitor not found")
         return
-    if ctx.message.author.name != "Cartmanez#8671":
+    elif ctx.message.author.name == "Cartmanez#8671":
         await client.kick(member)
         await client.say("Member Kicked")
     else:
         await("Back off Comrade! :triumph: You're not daddy Cartmanez :heart_eyes:")
+
 
 
 
