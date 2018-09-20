@@ -79,11 +79,12 @@ async def echo(*args):
 
 #clear messages, 10 by default, 100 at max
 @client.command(pass_context=True)
-async def sweep(ctx, amount=10):
+async def sweep(ctx, amount=10, skip=0):
     channel = ctx.message.channel
     messages = []
     async for message in client.logs_from(channel,limit=int(amount)):
         messages.append(message)
+    messages = messages[:-skip or None]
     await client.delete_messages(messages)
 
 
@@ -94,7 +95,7 @@ async def help():
     )
 
     embed.set_author(name='Set of commands')
-    embed.add_field(name="!sweep [# of messages]", value="Clears a set number of messages(10 by default)", inline=False)
+    embed.add_field(name="!sweep [# of messages][# of messages to skip]", value="Clears a set number of messages(10 by default). Skips are from bottom", inline=False)
     embed.add_field(name='!setpasta [T/F]', value='Sets automatic copypasta when you type a keyword', inline=False)
     embed.add_field(name='!kick [Member Name]',value='Kicks the member from server', inline=False)
     embed.add_field(name='Commands for Images', value='!stalin \n!lenin \n!marx \n!fidel', inline=False)
