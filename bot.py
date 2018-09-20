@@ -6,7 +6,7 @@ import asyncio
 
 token = os.environ['token']
 client = commands.Bot(command_prefix = '!')
-# bot = discord.Bot()
+client.remove_command('help')
 
 
 
@@ -76,7 +76,7 @@ async def echo(*args):
     await client.say(output)
 
 
-#clear messages, 10 at a time
+#clear messages, 10 by default, 100 at max
 @client.command(pass_context=True)
 async def sweep(ctx, amount=10):
     channel = ctx.message.channel
@@ -85,6 +85,25 @@ async def sweep(ctx, amount=10):
         messages.append(message)
     await client.delete_messages(messages)
     await client.say("Cleared")
+
+
+@client.command()
+async def help():
+    embed = discord.Embed(
+        colour = discord.Color.orange()
+    )
+
+    embed.set_author(name='Help')
+    embed.add_field(name="!sweep [# of messages]", value="Clears a set number of messages(10 by default)", inline=False)
+    embed.add_field(name='!setpasta [T/F]', value='Sets automatic copypasta when you type a keyword', inline=False)
+    embed.add_field(name='!kick [Member Name]',value='Kicks the member from server', inline=False)
+
+    await client.say(embed=embed)
+
+
+
+
+
 
 #leader images go here
 @client.command(pass_context=True)
