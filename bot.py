@@ -85,7 +85,6 @@ async def sweep(ctx, amount=10):
     async for message in client.logs_from(channel,limit=int(amount)):
         messages.append(message)
     await client.delete_messages(messages)
-    await client.say("Cleared")
 
 
 @client.command()
