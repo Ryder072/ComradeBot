@@ -7,7 +7,7 @@ token = os.environ['token']
 client = commands.Bot(command_prefix = '!')
 client.remove_command('help')
 
-pasta_perm = True
+pasta_perm = False
 
 
 #function activate when started
@@ -59,7 +59,7 @@ async def on_message(message):
     if 'python' in message.content.lower() and pasta_perm:
         if message.author == client.user:
             return
-        pasta = """Oh you think python is good?Let's start with indentation errors. What the actual fuck? No sane programming language structures itself on tabs, you want clear blocks? You want an end, well fuck you! Better make sure it's all aligned well. Are you 4 layers down into indentation, better make sure that screen real estate is holding up, wouldn't want to cause you any fucking stupid problems or anything. Wanna use tabs? Sure, use tabs, prettiest things on earth, some spaces, why not, throw it all in, oh wait, I like either one but not both together. Your dirty friend doesn't know how to set up his vim (and it shouldn't damn well matter), :retab won't work because you've now created a horrible mess. Oh, wanna git clone some code, for sure, just make sure you use the exact same configuration, and please do follow the joke of a style guide, it's the only way our programs actually run. BECAUSE THEy ARE DEPENDANT ON STYLE WHAT THE FUCK. Semicolons are optional, lovely. Want to flatten an array, .flatten? Nooooo, gotta overload the + operator sum(fuck,+) this how disgusting is that. Well you may ask? Surely python must have something good right? All those scientists must use it for a reason (and 90% \of them write horrific code and have no clue about it by the way, as is unsurprising, hence the python). Well yeah, it has some nice libraries, but that's like saying it's a nice car because someone decided to build a fancy trailer for it. And it automatically freezes string literals, that's slightly convenient."""
+        pasta = """Oh you think python is good?Let's start with indentation errors. What the actual fuck? No sane programming language structures itself on tabs, you want clear blocks? You want an end, well fuck you! Better make sure it's all aligned well. Are you 4 layers down into indentation, better make sure that screen real estate is holding up, wouldn't want to cause you any fucking stupid problems or anything. Wanna use tabs? Sure, use tabs, prettiest things on earth, some spaces, why not, throw it all in, oh wait, I like either one but not both together. Your dirty friend doesn't know how to set up his vim (and it shouldn't damn well matter), :retab won't work because you've now created a horrible mess. Oh, wanna git clone some code, for sure, just make sure you use the exact same configuration, and please do follow the joke of a style guide, it's the only way our programs actually run. BECAUSE THEy ARE DEPENDANT ON STYLE WHAT THE FUCK. Semicolons are optional, lovely. Want to flatten an array, .flatten? Nooooo, gotta overload the + operator sum(fuck,+) this how disgusting is that. Well you may ask? Surely python must have something good right? All those scientists must use it for a reason (and 90percent of them write horrific code and have no clue about it by the way, as is unsurprising, hence the python). Well yeah, it has some nice libraries, but that's like saying it's a nice car because someone decided to build a fancy trailer for it. And it automatically freezes string literals, that's slightly convenient."""
         await client.send_message(message.channel, pasta)
 
     await client.process_commands(message)
