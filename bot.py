@@ -20,7 +20,7 @@ async def on_ready():
 #All the dank replies and copypasta stuff goes here
 @client.event
 async def on_message(message):
-    if pasta_perm:
+    if pasta_perm == True:
         if message.content.startswith("!test"):
             await client.send_message(message.channel, "Lets revolt my comrades!")
 
@@ -103,15 +103,15 @@ async def help():
     await client.say(embed=embed)
 
 @client.command()
-async def setpasta(perm=""):
+async def setpasta(perm):
     if perm == "F":
         pasta_perm = False
-        client.say("Copypastas turned off")
+        await client.say("Copypastas turned off")
     elif perm == "T":
         pasta_perm = True
-        client.say("Copypastas turned on. Lets begin the revolution!")
+        await client.say("Copypastas turned on. Lets begin the revolution!")
     else:
-        client.say("Enter a valid option between T and F")
+        await client.say("Enter a valid option between T and F")
 
 
 
