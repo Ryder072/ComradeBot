@@ -103,11 +103,11 @@ async def help():
     await client.say(embed=embed)
 
 @client.command()
-async def setpasta(bool=""):
-    if bool == "F":
+async def setpasta(perm=""):
+    if perm == "F":
         pasta_perm = False
         client.say("Copypastas turned off")
-    elif bool == "T":
+    elif perm == "T":
         pasta_perm = True
         client.say("Copypastas turned on. Lets begin the revolution!")
     else:
