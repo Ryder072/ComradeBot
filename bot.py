@@ -7,7 +7,7 @@ token = os.environ['token']
 client = commands.Bot(command_prefix = '!')
 client.remove_command('help')
 
-pasta_perm = False
+pasta_perm = True
 
 
 #function activate when started
