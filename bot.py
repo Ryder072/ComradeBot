@@ -2,6 +2,7 @@ import discord
 from discord.ext import commands
 import os
 import asyncio
+import json
 
 token = os.environ['token']
 client = commands.Bot(command_prefix = '!')
@@ -20,6 +21,16 @@ async def on_ready():
 #All the dank replies and copypasta stuff goes here
 @client.event
 async def on_message(message):
+    with open('users.json','r') as f:
+        users = json.load(f)
+    
+    await update_data(users, message.author)
+    await add_experience(users, message.author, 5)
+    await level_up(users, message.author, message.channel)
+
+    with open('users.json', 'r') as f:
+        json.dump(users, f)
+
     if pasta_perm:
         if message.content.startswith("!test"):
             await client.send_message(message.channel, "Lets revolt my comrades!")
@@ -147,6 +158,13 @@ async def on_member_join(member):
     await client.add_roles(member, role)
     channel = discord.utils.get(member.server.channels, name='general')
     await client.send_message(channel, "Hello there {}. You have been promoted to Comrade rank!".format(member.name))
+    with open('users.json', 'r') as f:
+        users = json.load(f)
+
+    await update_data(users, member)
+
+    with open('users.json', 'w') as f:
+        json.dump(users, f)
 
 
 #only the admin can kick people
@@ -162,5 +180,23 @@ async def kick(ctx, guilty):
     else:
         await client.say("Back off Comrade! :triumph: You're not daddy Cartmanez :heart_eyes:")
 
+
+async def update_data(users, user):
+    if not user.id in users:
+        users[user.id] = {}
+        users[user.id]['experience'] = 0
+        users[user.id]['level'] = 1
+    
+async def add_experience(users, user, exp):
+    users[user.id]['experience'] += exp
+
+async def level_up(users, user, channel):
+    experience = users[user.id]['experience']
+    lvl_start = users[user.id]['level']
+    lvl_end = int(experience ** 1/4)
+
+    if lvl_start < lvl_end:
+        await client.send_message(channel, "Comrade {} has gained welfare rank of Level {}".format(user.mention, lvl_end))
+        users[user.id]['level'] = lvl_end
 
 client.run(token)
