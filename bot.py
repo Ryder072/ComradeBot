@@ -84,7 +84,7 @@ async def sweep(ctx, amount=10, skip=0):
     messages = []
     async for message in client.logs_from(channel,limit=int(amount)):
         messages.append(message)
-    messages = messages[:-skip or None]
+    messages = messages[:skip or None]
     await client.delete_messages(messages)
 
 
