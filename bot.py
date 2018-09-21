@@ -62,6 +62,10 @@ async def on_message(message):
                 return
             pasta = """Oh you think python is good?Let's start with indentation errors. What the actual fuck? No sane programming language structures itself on tabs, you want clear blocks? You want an end, well fuck you! Better make sure it's all aligned well. Are you 4 layers down into indentation, better make sure that screen real estate is holding up, wouldn't want to cause you any fucking stupid problems or anything. Wanna use tabs? Sure, use tabs, prettiest things on earth, some spaces, why not, throw it all in, oh wait, I like either one but not both together. Your dirty friend doesn't know how to set up his vim (and it shouldn't damn well matter), :retab won't work because you've now created a horrible mess. Oh, wanna git clone some code, for sure, just make sure you use the exact same configuration, and please do follow the joke of a style guide, it's the only way our programs actually run. BECAUSE THEy ARE DEPENDANT ON STYLE WHAT THE FUCK. Semicolons are optional, lovely. Want to flatten an array, .flatten? Nooooo, gotta overload the + operator sum(fuck,+) this how disgusting is that. Well you may ask? Surely python must have something good right? All those scientists must use it for a reason (and 90percent of them write horrific code and have no clue about it by the way, as is unsurprising, hence the python). Well yeah, it has some nice libraries, but that's like saying it's a nice car because someone decided to build a fancy trailer for it. And it automatically freezes string literals, that's slightly convenient."""
             await client.send_message(message.channel, pasta)
+        if 'bary' in message.content.lower():
+            if message.author == client.user:
+                return
+            pasta = """Whats the biggest thing you put in Bary's Asshole? Mine is a full length turkey baster full of butter (squeeze part included) It was all i had on hand at the time so i had to make do. The butter was also in solid form, how did i get it in the baster you might ask? Well i melted it down, poured it in and let it harden in the fridge. At first it kind of hurt him because the tip wasnt rounded off and has a slight hook bend to it, but after the initial entry it wasnt so bad plus the cool butter kept his ass from hurting as much and swelling. For some reason it also had these little ribs and measuring graduations on it which was kind of a pain in the ass! (pun intended ;) ) But nah, it was pretty nice up until i got to the squeezing part, that was hard to get in but since it was soft it wasnt too bad. Once the whole thing was in i squeezed the tube and shot the whole wad of cool butter straight up into Bary's sweet, tender boy colon. He was bleeding a little bit but it was worth it. After awhile, he felt it start to warm back up from his body heat and slowly turn back to liquid form. Thats when i reinserted my trusty baster and vacuumed it all right back out :) and you guys know me, i let nothing go to waste, so i put it back in the fridge and solidified it again so i can still use it. And honestly, you wouldnt believe how much better butter tastes once its been inside Bary's asshole, its incredible! Its like a very fine cheese with all the complex aroma and flavor. Anyway thats just my story, you should try it sometime!"""
 
     await client.process_commands(message)
 
@@ -82,11 +86,11 @@ async def echo(*args):
 async def sweep(ctx, amount=10):
     channel = ctx.message.channel
     messages = []
-    async for message in client.logs_from(channel,limit=int(amount)):
+    async for message in client.logs_from(channel,limit=int(amount),):
         messages.append(message)
     await client.delete_messages(messages)
 
-
+#custom help command for the retards
 @client.command()
 async def help():
     embed = discord.Embed(
@@ -101,6 +105,8 @@ async def help():
 
     await client.say(embed=embed)
 
+
+#ability to set pasta on and off
 @client.command()
 async def setpasta(perm):
     global pasta_perm
