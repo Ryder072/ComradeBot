@@ -28,7 +28,7 @@ async def on_message(message):
     await add_experience(users, message.author, 5)
     await level_up(users, message.author, message.channel)
 
-    with open('users.json', 'r') as f:
+    with open('users.json', 'w') as f:
         json.dump(users, f)
 
     if pasta_perm:
