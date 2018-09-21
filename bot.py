@@ -193,7 +193,7 @@ async def add_experience(users, user, exp):
 async def level_up(users, user, channel):
     experience = users[user.id]['experience']
     lvl_start = users[user.id]['level']
-    lvl_end = int(experience ** 1/4)
+    lvl_end = int(experience ** (1/4))
 
     if lvl_start < lvl_end:
         await client.send_message(channel, "Comrade {} has gained welfare rank of Level {}".format(user.mention, lvl_end))
