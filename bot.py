@@ -4,7 +4,7 @@ import os
 import asyncio
 
 # token = os.environ['token']
-token = 'NDkxMDY0ODY1MTcxOTYzOTI0.DoDcaw.ou1g5ozgayWW1hq5opZNAwpjfG4'
+token = os.environ['token']
 client = commands.Bot(command_prefix = '!')
 client.remove_command('help')
 
@@ -178,5 +178,18 @@ async def redirect(ctx, member1, member2, channel):
             await client.say("Wrong channel")
     else:
         await client.say("Comrades not found")
+
+
+@client.command(pass_context=True)
+async def timeout(ctx, limit=5):
+    if limit >5:
+        await client.say("Limit can't exceed 5 minutes")
+        return
+    else:
+        pass
+
+
+
+
 
 client.run(token)
