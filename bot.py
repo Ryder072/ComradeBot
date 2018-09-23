@@ -187,7 +187,7 @@ async def timeout(ctx, member):
     memb = discord.utils.get(ctx.message.server.members, name=member)
     global timeout_member
     timeout_member.append(memb)
-    # out(memb)
+    out(memb)
 
 
 async def out(member):
