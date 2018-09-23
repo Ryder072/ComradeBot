@@ -9,7 +9,7 @@ client = commands.Bot(command_prefix = '!')
 client.remove_command('help')
 
 pasta_perm = True
-timeout_member = []
+timeout_member = None
 #function activate when started
 @client.event
 async def on_ready():
@@ -20,7 +20,7 @@ async def on_ready():
 #All the dank replies and copypasta stuff goes here
 @client.event
 async def on_message(message):
-    if message.author in timeout_member:
+    if message.author == timeout_member:
         await client.delete_message(message)
 
     if pasta_perm:
@@ -191,7 +191,7 @@ async def timeout(ctx, member):
         return
     memb = discord.utils.get(ctx.message.server.members, name=member)
     global timeout_member
-    timeout_member.append(memb)
+    timeout_member = memb
     await client.say("Comrade {} has been timed out for 5 minutes".format(memb.name))
     await out(memb)
 
@@ -202,7 +202,7 @@ async def out(member):
     while amount!=0:
         await asyncio.sleep(60)
         amount-=1
-    timeout_member.remove(member)
+    timeout_member = None
 
 
 
