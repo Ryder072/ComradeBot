@@ -196,7 +196,7 @@ async def timeout(ctx, member):
     global timeout_member
     timeout_member = memb
     await client.say("Comrade {} has been timed out for 5 minutes".format(memb.name))
-    # await out(memb)
+    await out(memb)
 
 #the function to calculate time elapsed
 async def out(member):
