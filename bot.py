@@ -9,8 +9,7 @@ client = commands.Bot(command_prefix = '!')
 client.remove_command('help')
 
 pasta_perm = True
-
-
+timeout_member = []
 #function activate when started
 @client.event
 async def on_ready():
@@ -21,6 +20,9 @@ async def on_ready():
 #All the dank replies and copypasta stuff goes here
 @client.event
 async def on_message(message):
+    if message.author in timeout_member:
+        await client.delete_message(message)
+
     if pasta_perm:
         if message.content.startswith("!test"):
             await client.send_message(message.channel, "Lets revolt my comrades!")
@@ -160,7 +162,7 @@ async def kick(ctx, guilty):
         return
     elif perms:
         await client.kick(member)
-        await client.say("Member Kicked")
+        await client.say("Off to the gulag they go!")
     else:
         await client.say("Back off Comrade! :triumph: You can't kick other members")
 
@@ -181,12 +183,18 @@ async def redirect(ctx, member1, member2, channel):
 
 
 @client.command(pass_context=True)
-async def timeout(ctx, limit=5):
-    if limit >5:
-        await client.say("Limit can't exceed 5 minutes")
-        return
-    else:
-        pass
+async def timeout(ctx, member):
+    global timeout_member
+    timeout_member.append(member)
+    # out(member)
+
+
+async def out(member):
+    amount = 5
+    while amount!=0:
+        await asyncio.sleep(60)
+        amount-=1
+    timeout_member.remove(member)
 
 
 
