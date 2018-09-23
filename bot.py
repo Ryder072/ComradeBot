@@ -152,15 +152,17 @@ async def on_member_join(member):
 #only the admin can kick people
 @client.command(pass_context=True)
 async def kick(ctx, guilty):
+    channel = ctx.message.channel
+    perms = ctx.message.author.permissions_in(channel).kick_members
     member = discord.utils.get(ctx.message.server.members, name=guilty)
     if member == None:
         await client.say("Traitor not found")
         return
-    elif ctx.message.author.name == "Cartmanez#8671":
+    elif perms:
         await client.kick(member)
         await client.say("Member Kicked")
     else:
-        await client.say("Back off Comrade! :triumph: You're not daddy Cartmanez :heart_eyes:")
+        await client.say("Back off Comrade! :triumph: You can't kick other members")
 
 #redirect users to a certain channel
 @client.command(pass_context=True)
@@ -176,15 +178,5 @@ async def redirect(ctx, member1, member2, channel):
             await client.say("Wrong channel")
     else:
         await client.say("Comrades not found")
-
-#test lmao
-@client.command(pass_context=True)
-async def permit(ctx):
-    channel = ctx.message.channel
-    perms = ctx.message.author.permissions_in(channel).kick_members
-    if perms:
-        await client.say("So guys we did it")
-    else:
-        await client.say("ligma")
 
 client.run(token)
