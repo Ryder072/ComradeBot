@@ -180,9 +180,11 @@ async def redirect(ctx, member1, member2, channel):
 #test lmao
 @client.command(pass_context=True)
 async def permit(ctx):
-    top = ctx.message.author.top_role
-    perms = ctx.message.author.server_permissions
-    await client.say("Your top role is {}".format(top))
-    await client.say("Your permits are {}".format(perms))
+    channel = ctx.message.channel
+    perms = ctx.message.member.permissions_in(channel).kick_members
+    if perms:
+        await client.say("So guys we did it")
+    else:
+        await client.say("ligma")
 
 client.run(token)
