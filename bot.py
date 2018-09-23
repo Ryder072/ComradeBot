@@ -106,6 +106,8 @@ async def help():
     embed.add_field(name='!setpasta [T/F]', value='Sets automatic copypasta when you type a keyword', inline=False)
     embed.add_field(name='!kick [Member Name]',value='Kicks the member from server', inline=False)
     embed.add_field(name='Commands for Images', value='!stalin \n!lenin \n!marx \n!fidel', inline=False)
+    embed.add_field(name='!redirect [member1][member2] [channel]', value='Redirects members to the given channel', inline=False)
+    embed.add_field(name='!timeout [member]', value='Mutes the member for 5 minutes. Only 1 member can be timed out', inline=False)
 
     await client.say(embed=embed)
 
@@ -151,7 +153,7 @@ async def on_member_join(member):
     channel = discord.utils.get(member.server.channels, name='general')
     await client.send_message(channel, "Hello there {}. You have been promoted to Comrade rank!".format(member.name))
 
-#only the admin can kick people
+#only the members with permission to kick members can successfully call this command
 @client.command(pass_context=True)
 async def kick(ctx, guilty):
     channel = ctx.message.channel
@@ -182,6 +184,7 @@ async def redirect(ctx, member1, member2, channel):
         await client.say("Comrades not found")
 
 
+#any messages by the user are deleted for 5 minutes
 @client.command(pass_context=True)
 async def timeout(ctx, member):
     channel = ctx.message.channel
@@ -195,7 +198,7 @@ async def timeout(ctx, member):
     await client.say("Comrade {} has been timed out for 5 minutes".format(memb.name))
     await out(memb)
 
-
+#the function to calculate time elapsed
 async def out(member):
     global timeout_member
     amount = 5
