@@ -191,7 +191,8 @@ async def timeout(ctx, member):
 
 
 async def out(member):
-    amount = 5
+    global timeout_member
+    amount = 1
     while amount!=0:
         await asyncio.sleep(60)
         amount-=1
