@@ -162,4 +162,18 @@ async def kick(ctx, guilty):
     else:
         await client.say("Back off Comrade! :triumph: You're not daddy Cartmanez :heart_eyes:")
 
+
+@client.command(pass_context=True)
+async def redirect(ctx, member1, member2, channel):
+    user1 = discord.utils.get(ctx.message.server.members, name=member1)
+    user2 = discord.utils.get(ctx.message.server.members, name=member2)
+    chan = discord.utils.get(ctx.message.server.channels, name=channel)
+
+    if user1 and user2:
+        if chan:
+            await client.send_message(chan, "{},{} continue conversation in this channel.".format(user1.mention,user2.mention))
+        else:
+            await client.say("Wrong channel")
+    else:
+        await client.say("Comrades not found")
 client.run(token)
