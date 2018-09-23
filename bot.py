@@ -184,15 +184,21 @@ async def redirect(ctx, member1, member2, channel):
 
 @client.command(pass_context=True)
 async def timeout(ctx, member):
+    channel = ctx.message.channel
+    perms = ctx.message.author.permissions_in(channel).administrator
+    if not perms:
+        await client.say("You can't timeout members")
+        return
     memb = discord.utils.get(ctx.message.server.members, name=member)
     global timeout_member
     timeout_member.append(memb)
+    await client.say("Comrade {} has been timed out for 5 minutes".format(memb.name))
     await out(memb)
 
 
 async def out(member):
     global timeout_member
-    amount = 1
+    amount = 5
     while amount!=0:
         await asyncio.sleep(60)
         amount-=1
