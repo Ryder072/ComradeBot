@@ -181,7 +181,7 @@ async def redirect(ctx, member1, member2, channel):
 @client.command(pass_context=True)
 async def permit(ctx):
     channel = ctx.message.channel
-    perms = ctx.message.member.permissions_in(channel).kick_members
+    perms = ctx.message.author.permissions_in(channel).kick_members
     if perms:
         await client.say("So guys we did it")
     else:
