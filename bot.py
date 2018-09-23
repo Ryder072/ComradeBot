@@ -184,9 +184,10 @@ async def redirect(ctx, member1, member2, channel):
 
 @client.command(pass_context=True)
 async def timeout(ctx, member):
+    memb = discord.utils.get(ctx.message.server.members, name=member)
     global timeout_member
-    timeout_member.append(member)
-    # out(member)
+    timeout_member.append(memb)
+    # out(memb)
 
 
 async def out(member):
