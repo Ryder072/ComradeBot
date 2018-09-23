@@ -162,7 +162,7 @@ async def kick(ctx, guilty):
     else:
         await client.say("Back off Comrade! :triumph: You're not daddy Cartmanez :heart_eyes:")
 
-
+#redirect users to a certain channel
 @client.command(pass_context=True)
 async def redirect(ctx, member1, member2, channel):
     user1 = discord.utils.get(ctx.message.server.members, name=member1)
@@ -176,4 +176,13 @@ async def redirect(ctx, member1, member2, channel):
             await client.say("Wrong channel")
     else:
         await client.say("Comrades not found")
+
+#test lmao
+@client.command(pass_context=True)
+async def permit(ctx):
+    top = ctx.message.author.top_role
+    perms = ctx.message.author.server_permissions
+    await client.say("Your top role is {}".format(top))
+    await client.say("Your permits are {}".format(perms))
+
 client.run(token)
