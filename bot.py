@@ -4,7 +4,7 @@ import os
 import asyncio
 
 # token = os.environ['token']
-token = os.environ['token']
+token = 'NDkxMDY0ODY1MTcxOTYzOTI0.DoDcaw.ou1g5ozgayWW1hq5opZNAwpjfG4'
 client = commands.Bot(command_prefix = '!')
 client.remove_command('help')
 
@@ -24,6 +24,8 @@ async def on_message(message):
         await client.delete_message(message)
 
     if pasta_perm:
+        if message.author.name == "euler#7625":
+            await client.send_message(message.channel, "Come on buddy, change your avatar.")
         if message.content.startswith("!test"):
             await client.send_message(message.channel, "Lets revolt my comrades!")
 
