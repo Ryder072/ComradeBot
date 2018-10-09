@@ -24,8 +24,6 @@ async def on_message(message):
         await client.delete_message(message)
 
     if pasta_perm:
-        if message.author.name == "euler":
-            await client.send_message(message.channel, "Come on buddy, change your avatar.")
         if message.content.startswith("!test"):
             await client.send_message(message.channel, "Lets revolt my comrades!")
 
